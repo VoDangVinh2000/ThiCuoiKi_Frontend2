@@ -1,2 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400;500;600;700&display=swap');
 
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Fira Sans', sans-serif;
+}
 
+body{
+    background: url('../img/houese-pet.jpg') no-repeat;
+    background-size: cover;
+}
+
+.hello__name__player{
+    position: relative;
+    height: 100vh;
+    display: flex;
+    background: rgba(0, 0, 0, 0.849);
+}
+
+.hello__name__player .img__instructor{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 200px;
+}
+.img__instructor img{
+    width: 100%;
+}
+
+.hello__name__player .title__instructor{
+    position: absolute;
+    right: 14%;
+    bottom: 18%;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 0 10px #fff;
+    border-radius: 12px;
+    font-size: 20px;
+    padding: 30px 20px;
+}
+
+.hello__name__player .title__instructor p{
+    margin-bottom: 0;
+}
+
+.hello__name__player .title__instructor button{
+    color: crimson;
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 10px;
+    padding: 0 10px;
+    border-bottom: 2px solid crimson !important;
+    background: none;
+    border: none;
+}
+
+.instructor__name{
+    /* transform: scale(0); */
+    display: none;
+}

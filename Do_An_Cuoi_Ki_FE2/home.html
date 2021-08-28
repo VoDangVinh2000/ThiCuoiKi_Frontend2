@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
     integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous" />
   <link rel="stylesheet" href="./public/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 
@@ -31,7 +32,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal__hello__player" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -41,10 +42,11 @@
             </button>
           </div>
           <div class="modal-body">
+            <p class="error__name">Ôi có vẻ như bạn chưa nhập tên rồi !!! </p>
             <input type="text" class="name__player" value="">
           </div>
           <div class="modal-footer">
-            <button href="#" type="button" data-dismiss="modal" class="btn btn-primary get__name__player">Chọn tên
+            <button type="button" class="btn btn-primary btn__deteced get__name__player">Chọn tên
               này</button>
           </div>
         </div>

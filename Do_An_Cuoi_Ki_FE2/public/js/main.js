@@ -1,4 +1,5 @@
 
+
 // Xử lí hiển thị thông báo chào người chơi
 
 // Ẩn hiện massage
@@ -33,6 +34,9 @@ document.addEventListener('keydown', key => {
 
 })
 
+// Xử lý khi người dùng chưa nhập tên
+
+
 
 // Hiển thị tên người chơi
 const get__name__player = document.querySelector('.get__name__player');
@@ -42,10 +46,19 @@ get__name__player.addEventListener('click', () => {
     let name__title = document.querySelector('.name__title');
     let name__player = document.querySelector('.name__player');
     let img__instructor = document.querySelector('.img__instructor');
+    let error__name = document.querySelector('.error__name');
 
-    name__title.innerHTML = name__player.value;
-    instructor__name.style.display = 'block';
-    img__instructor.style.display = 'block';
+
+    if(name__player.value === ''){
+        error__name.style.display = 'block';
+    }else{   
+        name__title.innerHTML = name__player.value;
+        instructor__name.style.display = 'block';
+        img__instructor.style.display = 'block';
+        //add data-dismiss cho thẻ modal bằng Jquery
+        $('button.get__name__player').attr("data-dismiss","modal");
+    }
+    
 });
 
 
@@ -56,6 +69,7 @@ end__finish.addEventListener('click', () => {
     let hello__name__player = document.querySelector('.hello__name__player');
     hello__name__player.style.display = 'none';
 });
+
 
 
 

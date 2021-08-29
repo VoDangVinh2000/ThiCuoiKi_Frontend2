@@ -125,5 +125,34 @@ body{
 /*end inside wrapper game*/
 
 /*css select-animal*/
+.cat{
+    width: 40px;
+    height: 40px;
+    background-image: url(../img/cat.png);
+    background-size: cover;
+    border-radius: 50%;
+    margin-left: 110px;
+    margin-top: -30px;
+}
 
+.cat:hover{
+    transform: scale(1.1);
+    
+}
+.pig{
+    width: 40px;
+    height: 40px;
+    background-image: url(../img/lon.jpg);
+    background-size: cover;
+    border-radius: 50%;
+    margin-left: 165px;
+    margin-top: -40px;
+}
+.pig:hover{
+    transform: scale(1.1);
+    
+}
+.col-md{
+    margin-top: 10px;
+}
 /*end css select-animal*/

@@ -112,3 +112,35 @@ function startGame() {
 }
 
 startGame();
+//sự kiện ảnh khi người choi click vào ảnh thú cưng
+ let cat = document.querySelector('.cat');
+ let bgcat = document.querySelector('.bg-cat');
+ let pig = document.querySelector('.pig');
+ let bgpig = document.querySelector('.bg-pig');
+
+ cat.addEventListener('click',function(){
+    cat.style.transform='scale(1.3)';
+    cat.style.border='1px solid blue';
+    bgpig.style='none';
+    bgcat.style.width='400px';
+    bgcat.style.height='400px';
+    bgcat.style.backgroundImage='url(../Do_An_Cuoi_Ki_FE2/public/img/catgif.gif)';
+    bgcat.style.backgroundSize='cover';
+    bgcat.style.marginTop='100px';
+    bgcat.style.marginLeft='350px';
+    pig.style.transform='none';
+    pig.style.border='none';
+ });
+ pig.addEventListener('click',function(){
+  pig.style.transform='scale(1.3)';
+  pig.style.border='1px solid blue';
+  bgcat.style='none';
+  bgpig.style.width='400px';
+  bgpig.style.height='400px';
+  bgpig.style.backgroundImage='url(../Do_An_Cuoi_Ki_FE2/public/img/heo.gif)';
+  bgpig.style.backgroundSize='cover';
+  bgpig.style.marginTop='100px';
+  bgpig.style.marginLeft='350px';
+  cat.style.transform='none';
+   cat.style.border='none';
+});

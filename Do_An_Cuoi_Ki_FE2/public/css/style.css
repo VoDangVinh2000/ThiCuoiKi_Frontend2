@@ -114,3 +114,16 @@ body{
     border: 2px solid sienna;
     box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.699);
 }
+
+/*css inside wrapper game*/
+.wrapper-game{
+    width: 100%;
+    position: relative;
+}
+
+
+/*end inside wrapper game*/
+
+/*css select-animal*/
+
+/*end css select-animal*/

@@ -112,12 +112,14 @@ function startGame() {
 }
 
 startGame();
-//sự kiện ảnh khi người choi click vào ảnh thú cưng
+//khai báo thú cưng và bacground thú cưng
  let cat = document.querySelector('.cat');
  let bgcat = document.querySelector('.bg-cat');
  let pig = document.querySelector('.pig');
  let bgpig = document.querySelector('.bg-pig');
-
+ let notepet = document.querySelector('.note-pet');
+ 
+//sự kiện ảnh khi người choi click vào ảnh thú cưng
  cat.addEventListener('click',function(){
     cat.style.transform='scale(1.3)';
     cat.style.border='1px solid blue';
@@ -144,3 +146,18 @@ startGame();
   cat.style.transform='none';
    cat.style.border='none';
 });
+//sự kiện hiện ghi chú khi người dùng hover vào ảnh của thú cưng
+cat.onmouseover = function(){
+  notepet.style.marginLeft='130px';
+  notepet.style.background='white';
+  notepet.innerHTML = 'Con mèo';
+};
+pig.onmouseover = function(){
+  notepet.style.marginLeft='180px';
+  notepet.innerHTML = 'Con lợn';
+  notepet.style.background='white';
+};
+//sự kiện kết thúc ghi chú khi người dùng không hover vào thú cưng
+function callHoverEvent(){
+  notepet.innerHTML = '';
+}

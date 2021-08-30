@@ -41,16 +41,7 @@ function welcome() {}
 
 //Thử tạo sẵn 2 đối tượng chó và mèo thuộc lớp động vật,
 
-function animal(name, food, foodImage, feel) {
-  this.name = name;
-  this.food = food;
-  this.foodImage = foodImage;
-  this.feel = feel;
-  //let doan = ["Xương","Thịt nạc", "Cơm", "Thức ăn hữu cơ động vật"];
 
-  //let info = [{name : name, doan : doan}];
-  // return info;
-}
 
 function createdDog() {
   let name = "Dog";
@@ -80,8 +71,7 @@ function startGame() {
   let dog = new animal(createDog[0].name, "", "", "");
   let cat = new animal(createCat[0].name, createCat[0].food,"","");
   let wrapperGame = document.querySelector('.wrapper-game');
-  console.log(dog);
-  console.log(cat);
+  
   // Xử lí hiển thị thông báo chào người chơi
   // Ẩn hiện massage
   const finish__massage = document.querySelector(".finish__massage");

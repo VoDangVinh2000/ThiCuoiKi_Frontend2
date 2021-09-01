@@ -7,7 +7,7 @@
 }
 
 body{
-    background: url('../img/houese-pet.jpg') no-repeat;
+    /* background: url('../img/houese-pet.jpg') no-repeat; */
     background-size: cover;
 }
 
@@ -131,8 +131,8 @@ body{
     background-image: url(../img/cat.png);
     background-size: cover;
     border-radius: 50%;
-    margin-left: 110px;
-    margin-top: -30px;
+    /* margin-left: 110px;
+    margin-top: -30px; */
 }
 
 
@@ -142,11 +142,28 @@ body{
     background-image: url(../img/lon.jpg);
     background-size: cover;
     border-radius: 50%;
-    margin-left: 165px;
-    margin-top: -40px;
+    /* margin-left: 165px;
+    margin-top: -40px; */
 }
 
 .col-md{
     margin-top: 10px;
 }
 /*end css select-animal*/
+/*css header*/
+.header{
+    background:linear-gradient(120deg,#fed330 29%,#45aaf2 25%);
+    margin: 25px;
+    padding-left: 15px;
+    padding-bottom: 5pxs;
+    border-radius: 50px;
+}
+
+.player-name{
+    color: #fff;
+}
+.money-xu{
+    color: #fff;
+}
+
+/*end css header*/

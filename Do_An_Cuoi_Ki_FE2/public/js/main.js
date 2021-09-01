@@ -107,7 +107,6 @@ startGame();
  let bgcat = document.querySelector('.bg-cat');
  let pig = document.querySelector('.pig');
  let bgpig = document.querySelector('.bg-pig');
- let notepet = document.querySelector('.note-pet');
  
 //sự kiện ảnh khi người choi click vào ảnh thú cưng
  cat.addEventListener('click',function(){
@@ -147,7 +146,3 @@ pig.onmouseover = function(){
   notepet.innerHTML = 'Con lợn';
   notepet.style.background='white';
 };
-//sự kiện kết thúc ghi chú khi người dùng không hover vào thú cưng
-function callHoverEvent(){
-  notepet.innerHTML = '';
-}

@@ -7,7 +7,7 @@
 }
 
 body{
-    /* background: url('../img/houese-pet.jpg') no-repeat; */
+   /* background: url('../img/houese-pet.jpg') no-repeat;*/
     background-size: cover;
 }
 
@@ -128,7 +128,7 @@ body{
 .cat{
     width: 40px;
     height: 40px;
-    background-image: url(../img/cat.png);
+    background-image: url(../img/cat1.jpg);
     background-size: cover;
     border-radius: 50%;
     /* margin-left: 110px;
@@ -139,7 +139,7 @@ body{
 .pig{
     width: 40px;
     height: 40px;
-    background-image: url(../img/lon.jpg);
+    /*background-image: url(../img/lon.jpg);*/
     background-size: cover;
     border-radius: 50%;
     /* margin-left: 165px;
@@ -164,6 +164,36 @@ body{
 }
 .money-xu{
     color: #fff;
+}
+
+/*chọn thức ăn*/
+/* .select-food {
+    border:5px solid rgb(245, 151, 10);
+    border-radius: 25px;
+    width:150px;
+  
+    overflow-x:hidden;
+    overflow-y:auto;
+    background-color: blanchedalmond;
+    margin-left: 24px;
+} */
+/*chọn đồ chơi*/
+.select-toy{
+    border:5px solid rgb(245, 151, 10);
+    border-radius: 25px;
+    width:150px;
+    /* height:100px; */
+    overflow-x:hidden;
+    overflow-y:auto;
+    background-color: blanchedalmond;
+    margin-left: 170px;
+}
+.h6, h6{
+    margin-left: 52px;
+
+}
+.a, a{
+    margin-left: 52px;
 }
 
 /*end css header*/

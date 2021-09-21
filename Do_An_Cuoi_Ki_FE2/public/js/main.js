@@ -265,12 +265,12 @@ function replayGameFood(widthSubt){
     //let btnReplay = document.querySelector('#btnReplay');
     if(widthSubt >= 190){
         img_animal_main.src = "./public/img/animal-feel/cat-died.jpg"; 
-        // $(document).ready(function(){
-        //     $('#modalReplayGame').modal('show');
-        //     setTimeout(() => {
-        //         location.reload();
-        //     }, 3000);
-        // });
+        $(document).ready(function(){
+            $('#modalReplayGame').modal('show');
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        });
     }
    
 }

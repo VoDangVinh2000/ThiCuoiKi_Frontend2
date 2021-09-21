@@ -16,8 +16,8 @@
  */
 
 IconSelect.DEFAULT = {};
-IconSelect.DEFAULT.SELECTED_ICON_WIDTH = 48;
-IconSelect.DEFAULT.SELECTED_ICON_HEIGHT = 48;
+IconSelect.DEFAULT.SELECTED_ICON_WIDTH = 80;
+IconSelect.DEFAULT.SELECTED_ICON_HEIGHT = 80;
 IconSelect.DEFAULT.SELECTED_BOX_PADDING = 1;
 IconSelect.DEFAULT.SELECTED_BOX_PADDING_RIGHT = 12;
 IconSelect.DEFAULT.ICONS_WIDTH = 32;
@@ -26,7 +26,7 @@ IconSelect.DEFAULT.BOX_ICON_SPACE = 1;
 IconSelect.DEFAULT.HORIZONTAL_ICON_NUMBER = 3;
 IconSelect.DEFAULT.VECTORAL_ICON_NUMBER = 3;
 
-IconSelect.COMPONENT_ICON_FILE_PATH = "images/control/icon-select/arrow.png";
+IconSelect.COMPONENT_ICON_FILE_PATH = "./public/img/control/icon-select/arrow.png";
 
 function IconSelect($$elementID, $$parameters) {
     
@@ -96,6 +96,13 @@ function IconSelect($$elementID, $$parameters) {
         
     };
     
+    this.delete = function($icons){
+        let icon = $icons.filter((item) =>  item.element.classList.value === "icon" );
+        _icons = {...icon};
+        console.log(this.getIcons());
+        return _icons;
+    }
+
     //icon listesini al.
     this.getIcons = function(){ return _icons; };
     
@@ -122,7 +129,8 @@ function IconSelect($$elementID, $$parameters) {
     };
     
     this.getSelectedIndex = function(){ return _selectedIndex; };
-    this.getSelectedValue = function(){ return _icons[_selectedIndex].iconValue };
+    //this.getSelectedValue = function(){ return _icons[_selectedIndex].iconValue };
+    this.getSelectedValue = function(){return _icons[_selectedIndex].iconValue};
     this.getSelectedFilePath = function(){ return _icons[_selectedIndex].iconFilePath };
     
     

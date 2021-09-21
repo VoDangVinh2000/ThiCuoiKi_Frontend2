@@ -125,31 +125,33 @@ body{
 /*end inside wrapper game*/
 
 /*css select-animal*/
-.cat{
-    width: 40px;
-    height: 40px;
-    background-image: url(../img/cat1.jpg);
+.animal-select{
+    width: 40px ;
+    height: 40px ;
+    /* background-image: url(../img/cat1.jpg);  */
     background-size: cover;
-    border-radius: 50%;
-    /* margin-left: 110px;
-    margin-top: -30px; */
 }
-
-
-.pig{
-    width: 40px;
-    height: 40px;
-    /*background-image: url(../img/lon.jpg);*/
-    background-size: cover;
+.animal-select img{
+    max-width: 100%;
+    object-fit: cover;
+    height: 100%;
     border-radius: 50%;
-    /* margin-left: 165px;
-    margin-top: -40px; */
-}
-
-.col-md{
-    margin-top: 10px;
 }
 /*end css select-animal*/
+
+/*css main*/
+.image-animation-animal{
+    width: 100%;
+}
+.animal-main{
+    height: 300px;
+}
+.animal-main img{
+    max-width: 100%;
+    height: 300px;
+    background-size: cover;
+}
+/*end css main*/
 /*css header*/
 .header{
     background:linear-gradient(120deg,#fed330 29%,#45aaf2 25%);
@@ -164,19 +166,185 @@ body{
 }
 .money-xu{
     color: #fff;
+    display: flex;
+    text-align: center;
 }
 
-/*chọn thức ăn*/
-/* .select-food {
-    border:5px solid rgb(245, 151, 10);
-    border-radius: 25px;
-    width:150px;
-  
-    overflow-x:hidden;
-    overflow-y:auto;
-    background-color: blanchedalmond;
-    margin-left: 24px;
+/*css food*/
+.food{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+.food img{
+    max-width: 15%;
+    border: 1px solid darkgray;
+    border-radius: 25%;
+}
+
+.food img:hover{
+    transform: scale(1.2);
+}
+.amount-food{
+    padding-left: 15px;
+}
+.nameFood{
+    padding-right: 15px;
+}
+/*end css food*/
+
+/*css animal-healthy*/
+#cssload-wrapper {
+	width: 195px;
+	height: 19px;
+	left: 50%;
+    padding: 2px 0;
+}
+
+#cssload-border {
+	border: 1px solid yellowgreen;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	top: -50%;
+	padding: 4px 3px;
+}
+
+#cssload-whitespace {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+#cssload-line {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: green;
+
+	/* animation: cssload-slide 5.75s steps(40) infinite;
+		-o-animation: cssload-slide 5.75s steps(40) infinite;
+		-ms-animation: cssload-slide 5.75s steps(40) infinite;
+		-webkit-animation: cssload-slide 5.75s steps(40) infinite;
+		-moz-animation: cssload-slide 5.75s steps(40) infinite; */
+}
+
+/*css loader-line toys*/
+#cssload-line-toys {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: dodgerblue;
+
+	/* animation: cssload-slide 5.75s steps(40) infinite;
+		-o-animation: cssload-slide 5.75s steps(40) infinite;
+		-ms-animation: cssload-slide 5.75s steps(40) infinite;
+		-webkit-animation: cssload-slide 5.75s steps(40) infinite;
+		-moz-animation: cssload-slide 5.75s steps(40) infinite; */
+}
+
+/* 
+@keyframes cssload-slide {
+	0% {
+		left: -100%;
+	}
+	
+	100% {
+		left: 100%;
+	}
+}
+
+@-o-keyframes cssload-slide {
+	0% {
+		left: -100%;
+	}
+	
+	100% {
+		left: 100%;
+	}
+}
+
+@-ms-keyframes cssload-slide {
+	0% {
+		left: -100%;
+	}
+	
+	100% {
+		left: 100%;
+	}
+}
+
+@-webkit-keyframes cssload-slide {
+	0% {
+		left: -100%;
+	}
+	
+	100% {
+		left: 100%;
+	}
+}
+
+@-moz-keyframes cssload-slide {
+	0% {
+		left: -100%;
+	}
+	
+	100% {
+		left: 100%;
+	}
 } */
+/*end css animal-healthy*/
+/*css tutorials*/
+.warning-animal{
+    font-weight: bold;
+    animation: warning 1s linear infinite;
+    background-color: red;
+    display: none;
+    color: #fff;
+    width: fit-content;
+}
+/*end css tutorials*/
+/*css time-to-get-food*/
+.time-to-get-food .time{
+    font-weight: bold;
+    animation: warning 1s linear infinite;
+    background-color: red;
+    display: none;
+    color: #fff;
+    width: fit-content;
+}
+
+@keyframes warning{
+    0%{
+        background-color: white;
+        color: black;
+    };
+    100%{
+        background-color: red;
+        color: #fff;
+    }
+}
+@keyframes warning-animal{
+    0%{
+        background-color: white;
+        color: black;
+    };
+    100%{
+        background-color: red;
+        color: #fff;
+    }
+}
+/*end css time-to-get-food*/
+/*css select-food*/
+/*chọn thức ăn*/
+#selected-text{
+    align-items: center;
+}
+
 /*chọn đồ chơi*/
 .select-toy{
     border:5px solid rgb(245, 151, 10);

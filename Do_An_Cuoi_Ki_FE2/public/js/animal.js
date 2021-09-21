@@ -1,42 +1,81 @@
 
-let Animal = function () {
-  this.name = null;
-  this.food = null;
-  this.foodImage = null;
-  this.feel = null;
-  //this.info = null;
-  
-  this.init = function (name, food, foodImage, feel) {
-    this.name = name;
-    this.food = food;
-    this.foodImage = foodImage;
-    this.feel = feel;
-    //this.info = [{ name: this.name, food: this.food, foodImage: this.foodImage, feel : this.feel }];
-    return this;
-  };
-//  this.createdCat = function () {
-//     this.name = "Cat";
-//     this.food = ["Xương", "Thức ăn hữu cơ", "Thịt", "Gà"];
-//     this.foodImage = ["Happy4_Cat.gif","Happy3_Cat.gif","Angry_Cat.gif"];
-//      this.feel = 100;
-//     //this.info = [{ name: this.name, food: this.food, foodImage: this.foodImage, feel : this.feel }];
-//     return this;
+// let Animal = function () {
+//   this.name = null;
+//   this.image = null;
+//   let food = new Food();
+//   let feel = new Feel();
+//   let status = new Status();
+//   this.init = function (name ,image, food, feel, status) {
+//     this.name = name;
+//     this.image= image;
+//     this.food = food;
+//     this.feel = feel;
+//     this.status = status;
+//     this.animal = {name : this.name, image : this.image,food : this.food, feel : this.feel, status : this.status };
+//     return this.animal;
 //   };
-  // this.createdDog = function () {
-  //   this.name = "Dog";
-  //   this.food = ["Xương", "Thức ăn hữu cơ", "Thịt", "Gà"];
-  //   this.foodImage = ["1.jpg", "2,jpg", "3,jpg", "4.jpg"];
-  //   this.feel = 100;
-  //   this.info = [{ name: this.name, food: this.food, foodImage: this.foodImage, feel : this.feel }];
-  //   return this.info;
-  // };
- 
-  // this.setCssImageMain = function(width,height,background,url){
-  //   this.width = width;
-  //   this.height = height;
-  //   this.background = background;
-  //   this.url = url;
-  //   this.info = [{width : this.width + "px", height : this.height + "px", background : this.background, url : this.url}];
-  //   return this.info;
-  // }
-};
+//   this.setName = function(value){
+//     this.name = value;
+//     return this.name;
+//   }
+//   this.setFood = function(value){
+//     this.food = value;
+//     return this.food;
+//   }
+//   this.setFeel = function(value){
+//     this.feel = value;
+//         return this.feel;
+//   }
+
+// };
+
+
+// class Animal extends multi.inherit(Food,Feel){
+
+//     constructor (animalName,_nameFood,_colorFood,_feel,_vinh){
+//          super(_nameFood,_colorFood,_feel,_vinh);
+//         this.name = animalName;
+//     }
+//     get getName(){
+//       return this.name;
+//     }
+//     set getName(name){
+//       this.name = name;
+//     }
+
+// }
+
+class animal{
+    constructor (_name,_image,_food,_feel){
+        this.name = _name;
+        this.image = _image;
+        this.food = _food;
+        this.feel = _feel;
+     
+    }
+    get getName(){
+      return this.name;
+    }
+    set getName(name){
+      this.name = name;
+    }
+    get getFood(){
+      return this.food;
+    }
+    set getFood(food){
+      this.food = food;
+    }
+    get getFeel(){
+      return this.feel;
+    }
+    set getFeel(feel){
+      this.feel = feel;
+    }
+     get getImage(){
+      return this.image;
+    }
+    set getImage(image){
+      this.image = image;
+    }
+}
+// module.exports = animal;

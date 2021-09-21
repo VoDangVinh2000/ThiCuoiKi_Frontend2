@@ -74,7 +74,7 @@ function createOop_Cat(animals,img_animal_main){
                 div_inside_list_food.insertAdjacentHTML('beforeend','<div class="food"><p class="nameFood">'
                 +element.name+'</p><img class="imageFood" src="./public/img/animal-food/cat/'
                 +element.image+'" ><p class="amount-food">'+element.amount+'</p></div>');
-            })
+            });
         }
     }
 }
@@ -83,28 +83,37 @@ function money_initinal(arg){
     p_money.innerHTML = "Xu : " + arg;
     
 }
+function increaseMoney(money){
+    // money += 50;
+    // p_money.innerHTML = "Xu : " + money;
 
+    // money = p_money.innerHTML;
+    //     console.log(money);
+}
 //Let's go
+let widthSubt = 0;
 let startOopCat = function(animal,money){
     //Cat
     let oop_cat = animal;
     let hp_cat = oop_cat.feel;//100
     //Quy định 20s, mỗi giây chiều rộng giảm 10 <=> width = 100%
     let time = 20;
-    let widthSubt = 0;
+  
     let check = false;
     let nameFood = "";
         let timeGetFood = setInterval(() => {
             time -= 1;
-            cTime.style.display = "block";
-            cTime.innerHTML = "Còn lại : " + time;
-            widthSubt += 10;
-            cWarningAnimal.innerHTML = "Đói, đói, đói";
-            cWarningAnimal.style.display = "block";
+            widthSubt += 5;
+            // cWarningAnimal.innerHTML = "Đói, đói, đói";
+            // cWarningAnimal.style.display = "block";
             cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
             //Hp = 100 thì chuyển sang màu đỏ
             if(widthSubt > 100){
                 cLoaderLine.style.background = "red";
+                oop_cat.getImage = "./public/img/animal-feel/Doi-an-meo.gif";
+                img_animal_main.src = oop_cat.getImage;
+                replayGameFood(widthSubt);
+                return;
             }
             else{
                 cLoaderLine.style.background = "green";
@@ -120,10 +129,16 @@ let startOopCat = function(animal,money){
                     });
             })
             if(check == true){
-                widthSubt -= 10;
+                widthSubt -= 50;
                 setFirstRequest(timeGetFood,cWarningAnimal,cTime,widthSubt,cLoaderLine);
-                increaseMoney(money);
-                // decreaseFood(oop_cat,nameFood);
+                //increaseMoney(money);
+                money += 50;
+                p_money.innerHTML = "Xu : " + money;
+                decreaseFood(oop_cat,nameFood); 
+                if(cLoaderLine.style.background == "green"){
+                    oop_cat.getImage = "./public/img/animal-feel/vui-meo.gif";
+                    img_animal_main.src = oop_cat.getImage;
+                }
             }
             else{
                 if(time == 0 && check != true){
@@ -131,14 +146,15 @@ let startOopCat = function(animal,money){
                 }
             }
         }, 1000);
+        //clearInterval(timeGetFood);
     let cImageFood = document.querySelectorAll('.imageFood');
     cImageFood.forEach((element,index) => { // click image food loop
         element.addEventListener('click',function(){
             nameFood = oop_cat.getFood[index].name; 
-            widthSubt -= 20;
+            widthSubt -= 50;
             cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
-            decreaseFood(oop_cat,nameFood);
-            increaseMoney(money);
+             money += 50;
+            p_money.innerHTML = "Xu : " + money;
         });
     });
    
@@ -152,10 +168,14 @@ let img_animal_main =  document.querySelector("#img-animal-main");
 let appendAnimal_buy = document.querySelector('.appendAnimal-Buy');
 let div_inside_list_food = document.querySelector('.inside-list-food');
 let cLoaderLine = document.querySelector('#cssload-line');
-
+ let money = 100;
+ //Toys
+ let widthToys_subt = 0;
+ let cssload_line_toys =  document.querySelector('#cssload-line-toys');
+ let cInside_list_toys = document.querySelector('.inside-list-toys');
 let startGame = function(){
     
-    let foodCat = [{name : "Thịt", image : "meat.jpg",amount : 2}];
+    let foodCat = [{name : "Thịt", image : "meat.jpg",amount : 5},{name : "Sữa", image : "sua.jpg",amount : 5}];
     let feelCat = 100;
     let foodDog = [{name : "Xương", image : "meat.jpg",amount : 2},{name : "Cơm", image : "com.jpg",amount : 2}];
     let feelDog = 100;
@@ -164,10 +184,9 @@ let startGame = function(){
     let imageDog = "./public/img/dog-1.png";
     const animals = [
         new animal("Cat",imageCat,foodCat,feelCat),
-        new animal("Dog",imageDog,foodDog,feelDog),
     ];
-    let money = 100;
-     money_initinal(money);
+   
+    money_initinal(money);
     //insert div select-animal
     appendAnimalBuy(animals);
     //player choose an animal
@@ -178,9 +197,24 @@ let startGame = function(){
                 createOop_Cat(animals,img_animal_main);
                 element.style.display = "none";
                 startOopCat(animals[0],money);
+                animalFeel_toys();
+                let checkDied = false;
                 let timeGetFood = setInterval(() => {
-                     animals[0].getFeel += 10;
-                    cLoaderLine.style.width = "calc(100% - "+animals[0].getFeel+"px)"; 
+                    if(widthSubt > 100){
+                        cLoaderLine.style.background = "red";
+                        //animals[0].getImage = "./public/img/animal-feel/Doi-an-meo.gif";
+                        img_animal_main.src = "./public/img/animal-feel/Doi-an-meo.gif";
+                        replayGameFood(widthSubt);
+                    }
+                    else{
+                        cLoaderLine.style.background = "green";
+                    }
+                     if(cLoaderLine.style.background == "green"){
+                        animals[0].getImage = "./public/img/animal-feel/binhthuong-meo.gif";
+                        img_animal_main.src = animals[0].getImage;
+                    }
+                    cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
+                    widthSubt += 10;
                 }, 1000);
             }
         });
@@ -189,11 +223,6 @@ let startGame = function(){
 }
 startGame();
 
-//Implement function first request
-function firstRequest(){
-
-}
-//Implement function get name food
 //Implement function set òf first request if checkClickFood function == true
 function setFirstRequest(timeGetFood,cWarningAnimal,cTime,widthSubt,cLoaderLine){
     clearInterval(timeGetFood);
@@ -201,7 +230,6 @@ function setFirstRequest(timeGetFood,cWarningAnimal,cTime,widthSubt,cLoaderLine)
     cWarningAnimal.style.display = "none";
     cTime.style.display = "none";
     cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
-    
 }
 
 function decreaseFood(oop_cat,nameFood){
@@ -231,16 +259,67 @@ function decreaseFood(oop_cat,nameFood){
     })
 }
 
-function increaseMoney(money){
-    money += 50;
-    p_money.innerHTML = "Xu : " + money;
-    money = 0;
+//replay game
+function replayGameFood(widthSubt){
+    //let idDialogLoseNotice = document.querySelector('#noticeLoseGame');
+    //let btnReplay = document.querySelector('#btnReplay');
+    if(widthSubt >= 190){
+        img_animal_main.src = "./public/img/animal-feel/cat-died.jpg"; 
+        // $(document).ready(function(){
+        //     $('#modalReplayGame').modal('show');
+        //     setTimeout(() => {
+        //         location.reload();
+        //     }, 3000);
+        // });
+    }
+   
 }
-  //Append when new buy animal
-  // let appendBuyAnimal = document.querySelector('.appendAnimal-Buy');
-  // appendBuyAnimal.insertAdjacentHTML('beforeend','<div class="col"><div class="bird"></div></div>');
 
-  //let dog = animal.init(createdDog[0].name,createdDog[0].food,createdDog[0].foodImage,createdDog[0].feel);
+//Toys
+function animalFeel_toys(){
+    loadToys();
+    setInterval(() => {
+        widthToys_subt += 5;
+        cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+"px)"
+    }, 1000);
+}
+function loadToys(){
+    const createdToys = [
+        {image : "toys-mouse-blue.jpg"},
+        {image : "hello-kitty.jfif"}
+    ]
+    createdToys.map((item) => cInside_list_toys.insertAdjacentHTML('beforeend','<div class="toys"><img src="./public/img/animal-toys/'
+    +item.image+'"></div>') );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   // Xử lí hiển thị thông báo chào người chơi
   // Ẩn hiện massage
   const finish__massage = document.querySelector(".finish__massage");

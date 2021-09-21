@@ -130,6 +130,7 @@ body{
     height: 40px ;
     /* background-image: url(../img/cat1.jpg);  */
     background-size: cover;
+    cursor: pointer;
 }
 .animal-select img{
     max-width: 100%;
@@ -145,11 +146,17 @@ body{
 }
 .animal-main{
     height: 300px;
+    
 }
 .animal-main img{
     max-width: 100%;
     height: 300px;
     background-size: cover;
+    /* cursor: url('http://127.0.0.1:5501/Do_An_Cuoi_Ki_FE2/public/img/cursor/pngaaa.com-152333.png'), auto; */
+    cursor: url('https://vectr.com/tmp/a51LZwxO3/eOONotycB.svg?width=50&height=50&select=eOONotycBpage0'), pointer;
+}
+.animal-main #img-animal-main:hover{
+   
 }
 /*end css main*/
 /*css header*/
@@ -176,6 +183,7 @@ body{
     display: flex;
     justify-content: center;
     padding: 5px 0;
+    cursor: pointer;
 }
 .food img{
     max-width: 15%;
@@ -194,7 +202,33 @@ body{
 }
 /*end css food*/
 
+/*css toys*/
+.select-toy{
+    width: 100%;
+}
+.toys{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 5px 0;
+   
+}
+.toys img{
+    max-width: 15%;
+    background-size: cover;
+    border: 2px solid pink;
+    border-radius: 25%;
+}
+.toys img:hover{
+    transform: scale(1.2);
+}
+
 /*css animal-healthy*/
+.healthy-animal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #cssload-wrapper {
 	width: 195px;
 	height: 19px;
@@ -225,7 +259,6 @@ body{
 	height: 100%;
 	width: 100%;
 	background-color: green;
-
 	/* animation: cssload-slide 5.75s steps(40) infinite;
 		-o-animation: cssload-slide 5.75s steps(40) infinite;
 		-ms-animation: cssload-slide 5.75s steps(40) infinite;
@@ -239,7 +272,6 @@ body{
 	height: 100%;
 	width: 100%;
 	background-color: dodgerblue;
-
 	/* animation: cssload-slide 5.75s steps(40) infinite;
 		-o-animation: cssload-slide 5.75s steps(40) infinite;
 		-ms-animation: cssload-slide 5.75s steps(40) infinite;
@@ -345,17 +377,6 @@ body{
     align-items: center;
 }
 
-/*chọn đồ chơi*/
-.select-toy{
-    border:5px solid rgb(245, 151, 10);
-    border-radius: 25px;
-    width:150px;
-    /* height:100px; */
-    overflow-x:hidden;
-    overflow-y:auto;
-    background-color: blanchedalmond;
-    margin-left: 170px;
-}
 .h6, h6{
     margin-left: 52px;
 

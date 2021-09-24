@@ -21,7 +21,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Icons -->
-    <link rel="stylesheet" type="text/css" href="./public/css/iconselect.css">
 
 </head>
 
@@ -32,13 +31,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <img src="./public/img/imagesGame/endGame.gif" alt="">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    You are LOSER!
+                    You are LOSER! A few moment later!
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -59,28 +59,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Không đủ tiền mua! Hãy cho thú cưng ăn , tắm , vui và bạn sẽ được tặng xu. 
+                    Không đủ tiền mua! Hãy cho thú cưng ăn , tắm , vui và bạn sẽ được tặng xu.
                 </div>
                 <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                 </div>
             </div>
         </div>
     </div>
-    <div class="hello__name__player">
-        <div class="img__instructor">
-            <img src="./public/img/instructor-game.png" alt="">
-        </div>
-        <div class="title__instructor">
-            <p>Chào bạn có thể cho mình biết tên đc không! <button class="finish__massage" data-toggle="modal"
-                    data-target="#exampleModal">Tiếp tục >></button></p>
-        </div>
-
-        <div class="title__instructor instructor__name">
-            <p>Xin Chào "<b class="name__title"></b>"! <br> Chào mừng bạn về nhà, những chú thú cưng đang cần được bạn
-                chăm
-                sóc đấy. <button class="finish__massage end__finish">Tiếp tục >></button></p>
+    <!-- Modal start game -->
+    <div class="modal fade" id="modalStartGame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="./public/img/imagesGame/startGame.gif" alt="">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Chào mừng bạn đến với trò chơi chăm sóc thú cưng ^-^. Cùng chơi để qua môn nào.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Okey</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
         </div>
     </div>
     <div class="container-fluid">
@@ -96,11 +103,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md">
+                        <!-- <div class="col-md">
                             <div class="player-name">
                                 <p>Name</p>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md">
                             <div class="money-xu">
                                 <i class="fas fa-coins"></i>
@@ -169,7 +176,7 @@
                                 <div class="animal-main">
                                     <img src="" id="img-animal-main">
                                 </div>
-                               
+
                             </div>
                         </div>
                         <div class="col-md">

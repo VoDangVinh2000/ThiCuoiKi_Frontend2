@@ -67,9 +67,12 @@ body{
     display: none;
 }
 
-
+.modal img{
+    width: 268px;
+    height: 268px;
+}
 .modal-content{
-    transform: translateY(200px);
+    /* transform: translateY(200px); */
     box-shadow: 0 0 10px #fff;
     background: #b1dba9;
 }

@@ -6,40 +6,13 @@
 //   );
 // };
 
-// Kết thúc chào người chơi
-let hello__name__player = document.querySelector(".hello__name__player");
-hello__name__player.style.display = "none";
-// const end__finish = document.querySelector(".end__finish");
-// end__finish.addEventListener("click", () => {
-
-// hello__name__player.style.display = "none";
-// });
-
-// // // Hiển thị tên người chơi
-// const get__name__player = document.querySelector(".startAfterSaveName");
-
-// get__name__player.addEventListener("click", () => {
-//   let instructor__name = document.querySelector(".instructor__name");
-//   let name__title = document.querySelector(".name__title");
-//   let name__player = document.querySelector(".name__player");
-//   let img__instructor = document.querySelector(".img__instructor");
-//   let error__name = document.querySelector(".error__name");
-
-//   if (name__player.value === "") {
-//     error__name.style.display = "block";
-//   } else {
-//     name__title.innerHTML = name__player.value;
-//     instructor__name.style.display = "block";
-//     img__instructor.style.display = "block";
-//     //add data-dismiss cho thẻ modal bằng Jquery
-//     $("button.startAfterSaveName").attr("data-dismiss", "modal");
-//     //Bắt đầu các trạng thái của game sau khi lưu tên
-//   }
-// });
-
 //Trạng thái chào mừng
-function welcome() {}
-
+function welcome() {
+    $(document).ready(function(){
+        $('#modalStartGame').modal('show');
+    });
+}
+ welcome();
 
 
 //Vẽ hướng dẫn.
@@ -173,7 +146,7 @@ let cLoaderLine = document.querySelector('#cssload-line');
     let cStore_list_toys = document.querySelector('.store-list-toys');
     let cStore_list_food = document.querySelector('.store-list-food');
 let startGame = function(){
-    
+   
     let foodCat = [{name : "Thịt", image : "meat.jpg",amount : 2},{name : "Sữa", image : "sua.jpg",amount : 2}];
     let feelCat = 100;
     let foodDog = [{name : "Xương", image : "meat.jpg",amount : 2},{name : "Cơm", image : "com.jpg",amount : 2}];
@@ -205,26 +178,20 @@ let startGame = function(){
                 vuotVe();
                 let checkDied = false;
                 let timeGetFood = setInterval(() => {  
-                    if(widthSubt > 100){
+                    if(widthSubt > 100 ){
                         cLoaderLine.style.background = "red";
                         //animals[0].getImage = "./public/img/animal-feel/Doi-an-meo.gif";
                         img_animal_main.src = "./public/img/animal-feel/Doi-an-meo.gif";
                         //Âm thanh đòi ăn
                         replayGameFood(widthSubt);
-                        replayGameToys(widthToys_subt);
                     }
                     else{
                         //Âm thanh đã ăn
                         cLoaderLine.style.background = "green";
                     }
-                     if(cLoaderLine.style.background == "green"){
-                        oop_cat.getImage = "./public/img/animal-feel/binhthuong-meo.gif";
-                        img_animal_main.src = oop_cat.getImage;
-                    }
                     cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
                     widthSubt += 2;
                 }, 1000);
-
             }
         });
     });
@@ -310,8 +277,7 @@ function replayGameFood(widthSubt){
 }
 //replay fame toys
 function replayGameToys(widthToys_subt){
-    console.log(widthToys_subt);
-    if(widthToys_subt >= 180){
+    if(widthToys_subt >= 190){
         img_animal_main.src = "./public/img/animal-feel/cat-died.jpg"; 
         $(document).ready(function(){
             $('#modalReplayGame').modal('show');
@@ -389,12 +355,20 @@ function check_price_FoodOrToys(moneyCurrent,price){
 function animalFeel_toys(){
     //loadToys();
     decreaseToy(oop_cat);
+    let setTimeFeel;
     let timeGetToys = setInterval(() => {
         if(widthToys_subt > 100){
             cssload_line_toys.style.background = "#f6b93b";
+            //Âm thanh buồn
+            img_animal_main.src = "./public/img/animal-feel/buon-meo.gif";
+            replayGameToys(widthToys_subt);    
         }
         else{
-            cssload_line_toys.style.background = "dodgerblue";
+            //Âm thanh vui vẻ
+            cssload_line_toys.style.background = "dodgerblue";   
+             setTimeFeel =  setTimeout(() => {
+                img_animal_main.src = "./public/img/animal-feel/vui-meo-2.gif";   
+            }, 3000);
         }
         widthToys_subt += 5;
         cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+"px)";
@@ -535,135 +509,10 @@ function vuotVe(){
             }
         }, 7000);
     });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  // Xử lí hiển thị thông báo chào người chơi
-  // Ẩn hiện massage
-  const finish__massage = document.querySelector(".finish__massage");
-  finish__massage.addEventListener("click", () => {
-    let title__instructor = document.querySelector(".title__instructor");
-    let img__instructor = document.querySelector(".img__instructor");
-
-    title__instructor.style.display = "none";
-    img__instructor.style.display = "none";
-  });
-  // Close massage
-  document.querySelector(".close").addEventListener("click", () => {
-    let title__instructor = document.querySelector(".title__instructor");
-    let img__instructor = document.querySelector(".img__instructor");
-
-    title__instructor.style.display = "block";
-    img__instructor.style.display = "block";
-  });
-  //Bắt sự kiện khi người dùng nhấn key code
-  document.addEventListener("keydown", (key) => {
-    let title__instructor = document.querySelector(".title__instructor");
-    let img__instructor = document.querySelector(".img__instructor");
-    if (key.keyCode === 27) {
-      title__instructor.style.display = "block";
-      img__instructor.style.display = "block";
-    }
-  });
-
-
-
-
-// window.onload = function(){
-//   setInterval(() => {
-//     startGame();
-//   }, 1000);
-// }
+} 
 
 //Cho ăn : quy định thời gian 
 // function eatAnimal(){
 //     let div_time_to_get_food = document.querySelector('.time-to-get-food');
 //     let time
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Append when new buy animal
-  // let appendBuyAnimal = document.querySelector('.appendAnimal-Buy');
-  // appendBuyAnimal.insertAdjacentHTML('beforeend','<div class="col"><div class="bird"></div></div>');
-
-  //let dog = animal.init(createdDog[0].name,createdDog[0].food,createdDog[0].foodImage,createdDog[0].feel);
-  // Xử lí hiển thị thông báo chào người chơi
-  // Ẩn hiện massage
-  // const finish__massage = document.querySelector(".finish__massage");
-  // finish__massage.addEventListener("click", () => {
-  //   let title__instructor = document.querySelector(".title__instructor");
-  //   let img__instructor = document.querySelector(".img__instructor");
-
-  //   title__instructor.style.display = "none";
-  //   img__instructor.style.display = "none";
-  // });
-  // // Close massage
-  // document.querySelector(".close").addEventListener("click", () => {
-  //   let title__instructor = document.querySelector(".title__instructor");
-  //   let img__instructor = document.querySelector(".img__instructor");
-
-  //   title__instructor.style.display = "block";
-  //   img__instructor.style.display = "block";
-  // });
-  // //Bắt sự kiện khi người dùng nhấn key code
-  // document.addEventListener("keydown", (key) => {
-  //   let title__instructor = document.querySelector(".title__instructor");
-  //   let img__instructor = document.querySelector(".img__instructor");
-  //   if (key.keyCode === 27) {
-  //     title__instructor.style.display = "block";
-  //     img__instructor.style.display = "block";
-  //   }
-  // });
-
-

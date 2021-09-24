@@ -178,6 +178,12 @@ body{
 }
 
 /*css food*/
+.list-food{
+    height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    padding: 17px;
+}
 .food{
     width: 100%;
     display: flex;
@@ -205,25 +211,39 @@ body{
 /*css toys*/
 .select-toy{
     width: 100%;
+    height: 200px;
 }
 .toys{
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 5px 0;
+    padding: 5px;
    
+}
+.amount-toy{
+    padding-left: 15px;
 }
 .toys img{
     max-width: 15%;
     background-size: cover;
     border: 2px solid pink;
     border-radius: 25%;
+    cursor: pointer;
+  
 }
 .toys img:hover{
     transform: scale(1.2);
 }
-
+.toy-price{
+    padding: 0 0 0 10px;
+}
 /*css animal-healthy*/
+.feel{
+    position: absolute;
+    left: 103%;
+    top: -5px;
+    display: none;
+}
 .healthy-animal{
     display: flex;
     flex-direction: column;
@@ -387,7 +407,90 @@ body{
 
 /*end css header*/
 
-/* footer */
+/* cssfooter */
+footer{
+    padding-top: 5px;
+}
+.footer{
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(#82ccdd,#3c6382);
+    padding: 0 50px;
+    border-radius: 25px;
+}
+footer p {
+    color: #fff;
+}
+.store-list-food{
+    height: 120px;
+    overflow-y: auto;
+    
+}
+.store-food {
+    padding: 7px 9px 11px 18px;
+}
+.store-food img{
+    max-width: 100%;
+    height: 90px;
+    background-image: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    border: 4px solid pink;
+    padding: 5px;
+    cursor: pointer;
+}
+.store-food img:hover{
+    transform: scale(1.1);
+}
+.store-list-toys{
+    height: 120px;
+    overflow-y: auto;
+}
+.store-toys {
+    /* padding: 7px 9px 11px 18px; */
+}
+
+.store-toys img{
+    max-width: 100%;
+    height: 90px;
+    background-image: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    border: 4px solid pink;
+    padding: 5px;
+    cursor: pointer;
+}
+.store-toys img:hover{
+    transform: scale(1.1);
+}
+/*end css footer*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 .container-fluid {
     position: relative;
 } 
@@ -454,12 +557,9 @@ body{
     background-size: cover;
     background-image: none;
     border-radius: 50px;
-}
+}/*
 
 /*css footer*/
-footer{
-    border-radius: 25%;
-}
 /*end css footer*/
 
 

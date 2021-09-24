@@ -71,30 +71,30 @@ function createOop_Cat(animals,img_animal_main){
             animal.getImage = "./public/img/animal-feel/binhthuong-meo.gif";
             img_animal_main.src = animal.getImage;
             animal.getFood.forEach((element,index2) => {
-                div_inside_list_food.insertAdjacentHTML('beforeend','<div class="food"><p class="nameFood">'
-                +element.name+'</p><img class="imageFood" src="./public/img/animal-food/cat/'
+                div_inside_list_food.insertAdjacentHTML('beforeend'
+                ,'<div class="food"><img class="imageFood" src="./public/img/animal-food/cat/'
                 +element.image+'" ><p class="amount-food">'+element.amount+'</p></div>');
+            });
+            animal.getToy.forEach((v_toy,indexToy) => {
+                cInside_list_toys.insertAdjacentHTML('beforeend','<div id="toys" class="toys"><img class="imageToy" src="./public/img/animal-toys/'
+                +v_toy.image+'"><p class="amount-toy">'+v_toy.amount+'</p></div>');
             });
         }
     }
 }
 
 function money_initinal(arg){
-    p_money.innerHTML = "Xu : " + arg;
-    
-}
-function increaseMoney(money){
-    // money += 50;
-    // p_money.innerHTML = "Xu : " + money;
-
-    // money = p_money.innerHTML;
-    //     console.log(money);
+    p_money.innerHTML = "Xu : " + arg; 
 }
 //Let's go
 let widthSubt = 0;
-let startOopCat = function(animal,money){
+ let money = 100;
+ let oop_cat = [];
+let startOopCat = function(animal){
+    //Âm thanh bắt đầu sau khi chọn con mèo (6s)
+    
     //Cat
-    let oop_cat = animal;
+    oop_cat = animal;
     let hp_cat = oop_cat.feel;//100
     //Quy định 20s, mỗi giây chiều rộng giảm 10 <=> width = 100%
     let time = 20;
@@ -103,7 +103,7 @@ let startOopCat = function(animal,money){
     let nameFood = "";
         let timeGetFood = setInterval(() => {
             time -= 1;
-            widthSubt += 5;
+            widthSubt += 4;
             // cWarningAnimal.innerHTML = "Đói, đói, đói";
             // cWarningAnimal.style.display = "block";
             cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
@@ -112,7 +112,8 @@ let startOopCat = function(animal,money){
                 cLoaderLine.style.background = "red";
                 oop_cat.getImage = "./public/img/animal-feel/Doi-an-meo.gif";
                 img_animal_main.src = oop_cat.getImage;
-                replayGameFood(widthSubt);
+            
+            //    replayGameFood(widthSubt);
                 return;
             }
             else{
@@ -124,7 +125,6 @@ let startOopCat = function(animal,money){
                 cImageFood.forEach((element,index) => { // click image food loop
                     element.addEventListener('click',function(){
                         check = true;
-                        nameFood = oop_cat.getFood[index].name; 
                         //Xử lý ở if check == true         
                     });
             })
@@ -132,9 +132,8 @@ let startOopCat = function(animal,money){
                 widthSubt -= 50;
                 setFirstRequest(timeGetFood,cWarningAnimal,cTime,widthSubt,cLoaderLine);
                 //increaseMoney(money);
-                money += 50;
-                p_money.innerHTML = "Xu : " + money;
-                decreaseFood(oop_cat,nameFood); 
+                //money += 50;
+                //p_money.innerHTML = "Xu : " + money;
                 if(cLoaderLine.style.background == "green"){
                     oop_cat.getImage = "./public/img/animal-feel/vui-meo.gif";
                     img_animal_main.src = oop_cat.getImage;
@@ -147,19 +146,7 @@ let startOopCat = function(animal,money){
             }
         }, 1000);
         //clearInterval(timeGetFood);
-    let cImageFood = document.querySelectorAll('.imageFood');
-    cImageFood.forEach((element,index) => { // click image food loop
-        element.addEventListener('click',function(){
-            nameFood = oop_cat.getFood[index].name; 
-            widthSubt -= 50;
-            cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
-             money += 50;
-            p_money.innerHTML = "Xu : " + money;
-        });
-    });
-   
 }
-
 let cWarningAnimal = document.querySelector('.warning-animal');
 let cTime = document.querySelector('.time');
 let p_money = document.querySelector('.money');
@@ -168,24 +155,36 @@ let img_animal_main =  document.querySelector("#img-animal-main");
 let appendAnimal_buy = document.querySelector('.appendAnimal-Buy');
 let div_inside_list_food = document.querySelector('.inside-list-food');
 let cLoaderLine = document.querySelector('#cssload-line');
- let money = 100;
+
  //Toys
+ 
  let widthToys_subt = 0;
  let cssload_line_toys =  document.querySelector('#cssload-line-toys');
  let cInside_list_toys = document.querySelector('.inside-list-toys');
+    //created toys when start game
+    //the image store of toys
+    let imgStoreToys = [{image : "ball.jpg",price : 300, amount : 1}, {image : "hello-kitty.jfif", price : 150,amount : 1}
+    , {image : "laze.png" , price : 250, amount : 1}, {image : "meme-toy1.jfif", price : 400, amount : 1}
+    , {image : "meme-toy2.jpg",price : 285, amount : 1} , {image : "toys-mouse-blue.jpg",price : 350, amount : 1}];
+    let imgStoreFood = [{name : "Cám" ,image : "food1.png",amount : 1,price : 100}, {name:"Fris", image : "friskies.png",amount : 1
+    ,price : 140},{name:"Thịt",image : "meat.jpg",amount : 1,price : 200}, {name : "Sữa",image : "sua.jpg",amount : 1, price : 250}
+    , {name : "Xương cá",image : "xuong-ca.jpg",amount : 1, price : 300}];
+    
+    let cStore_list_toys = document.querySelector('.store-list-toys');
+    let cStore_list_food = document.querySelector('.store-list-food');
 let startGame = function(){
     
-    let foodCat = [{name : "Thịt", image : "meat.jpg",amount : 5},{name : "Sữa", image : "sua.jpg",amount : 5}];
+    let foodCat = [{name : "Thịt", image : "meat.jpg",amount : 2},{name : "Sữa", image : "sua.jpg",amount : 2}];
     let feelCat = 100;
     let foodDog = [{name : "Xương", image : "meat.jpg",amount : 2},{name : "Cơm", image : "com.jpg",amount : 2}];
     let feelDog = 100;
+    let toyCat = [{image : "hello-kitty.jfif",amount : 2 },{image : "laze.png", amount : 2}];
     //created oop animals
     let imageCat = "./public/img/cat1.jpg";
     let imageDog = "./public/img/dog-1.png";
     const animals = [
-        new animal("Cat",imageCat,foodCat,feelCat),
+        new animal("Cat",imageCat,foodCat,toyCat,feelCat),
     ];
-   
     money_initinal(money);
     //insert div select-animal
     appendAnimalBuy(animals);
@@ -196,30 +195,39 @@ let startGame = function(){
             if(index == 0){
                 createOop_Cat(animals,img_animal_main);
                 element.style.display = "none";
-                startOopCat(animals[0],money);
+                startOopCat(animals[0]);
                 animalFeel_toys();
+                store_loadToys();
+                store_loadFood();
+                decreaseFood(oop_cat);
+                buyFood();
+                buyToys();
+                vuotVe();
                 let checkDied = false;
-                let timeGetFood = setInterval(() => {
+                let timeGetFood = setInterval(() => {  
                     if(widthSubt > 100){
                         cLoaderLine.style.background = "red";
                         //animals[0].getImage = "./public/img/animal-feel/Doi-an-meo.gif";
                         img_animal_main.src = "./public/img/animal-feel/Doi-an-meo.gif";
+                        //Âm thanh đòi ăn
                         replayGameFood(widthSubt);
+                        replayGameToys(widthToys_subt);
                     }
                     else{
+                        //Âm thanh đã ăn
                         cLoaderLine.style.background = "green";
                     }
                      if(cLoaderLine.style.background == "green"){
-                        animals[0].getImage = "./public/img/animal-feel/binhthuong-meo.gif";
-                        img_animal_main.src = animals[0].getImage;
+                        oop_cat.getImage = "./public/img/animal-feel/binhthuong-meo.gif";
+                        img_animal_main.src = oop_cat.getImage;
                     }
                     cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
-                    widthSubt += 10;
+                    widthSubt += 2;
                 }, 1000);
+
             }
         });
     });
-
 }
 startGame();
 
@@ -231,35 +239,58 @@ function setFirstRequest(timeGetFood,cWarningAnimal,cTime,widthSubt,cLoaderLine)
     cTime.style.display = "none";
     cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
 }
-
-function decreaseFood(oop_cat,nameFood){
-    let cAmount_food = document.querySelectorAll('.amount-food');
+function removeListFood(){
     let cFood = document.querySelectorAll('.food');
-     oop_cat.getFood.forEach((element,index) => {
-        if(element.name === nameFood){
-            cFood.forEach((v_cFood,indexCFood)=> {
-                v_cFood.addEventListener('click',function(){
-                    cAmount_food.forEach((v_cAmountFood,indexCAmountFood) => {
-                        if(indexCAmountFood == indexCFood ){
-                            let amountFood = v_cAmountFood.innerHTML;//2
-                            amountFood -= 1;//1
-                            if(amountFood  == 0){
-                                v_cFood.remove();
-                                element.amount = amountFood;
-                                return;
-                            }
-                            element.amount = amountFood; 
-                            v_cAmountFood.innerHTML = element.amount;
-                            return;
-                        }
-                    });
-                });
-            });
-        }
-    })
+    cFood.forEach(element => {
+        element.remove();
+    });
+}
+function loadFoodAfterBuy(){
+    removeListFood();
+    oop_cat.getFood.forEach(element => {
+        
+          div_inside_list_food.insertAdjacentHTML('beforeend'
+                ,'<div class="food"><img class="imageFood" src="./public/img/animal-food/cat/'
+                +element.image+'" ><p class="amount-food">'+element.amount+'</p></div>');
+    });
+    decreaseFood(oop_cat);
 }
 
-//replay game
+function decreaseFood(oop_cat){
+    let cAmount_food = document.querySelectorAll('.amount-food');
+    let cFood = document.querySelectorAll('.food');
+    let imageFood = document.querySelectorAll('.imageFood');
+        cFood.forEach((element,index) => {
+            element.addEventListener('click', function(){
+                imageFood.forEach((v_image,indexImage) => {
+                    v_image.addEventListener('click',function(){
+                        if(indexImage  == index){
+                            let findIndexSlash = v_image.src.lastIndexOf('/');
+                            let subStrURL = v_image.src.substr(findIndexSlash + 1);//Lấy ra tên image 
+                            oop_cat.getFood.forEach(item => {
+                                if(item.image == subStrURL){
+                                    let amount = item.amount - 1;
+                                    if(amount == 0){
+                                        item.amount = amount;
+                                        oop_cat.getFood = oop_cat.getFood.filter((item,indexFilter) => item.amount !== 0);
+                                    }
+                                    item.amount = amount;  
+                                    // money += 50;
+                                    // p_money.innerHTML = "Xu : " + money;
+                                    widthSubt -= 50;
+                                    cLoaderLine.style.width = "calc(100% - "+widthSubt+")";
+                                    //Âm thanh chọn đồ ăn
+                                    loadFoodAfterBuy();
+                                }          
+                            });  
+                        }
+                    }); 
+                });
+            });
+        });   
+}
+
+//replay game food
 function replayGameFood(widthSubt){
     //let idDialogLoseNotice = document.querySelector('#noticeLoseGame');
     //let btnReplay = document.querySelector('#btnReplay');
@@ -267,34 +298,244 @@ function replayGameFood(widthSubt){
         img_animal_main.src = "./public/img/animal-feel/cat-died.jpg"; 
         $(document).ready(function(){
             $('#modalReplayGame').modal('show');
+            //Đã có âm thanh
+            let loseGame = document.getElementById('loseGame');
+            loseGame.play();
             setTimeout(() => {
                 location.reload();
-            }, 3000);
+            }, 5000);
         });
     }
    
 }
+//replay fame toys
+function replayGameToys(widthToys_subt){
+    console.log(widthToys_subt);
+    if(widthToys_subt >= 180){
+        img_animal_main.src = "./public/img/animal-feel/cat-died.jpg"; 
+        $(document).ready(function(){
+            $('#modalReplayGame').modal('show');
+            //Đã có âm thanh
+            let loseGame = document.getElementById('loseGame');
+            loseGame.play();
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
+        });
+    }
+}
 
+//Food
+function buyFood(){
+    let store_food = document.querySelectorAll('.store-food');
+    let imageFood = document.querySelectorAll('.store-image-food');
+    let priceFood = document.querySelectorAll('.store-price-food');
+    store_food.forEach((element,index) => {
+        element.addEventListener('click', function(){
+            imageFood.forEach((v_image,indexImage) => {
+                priceFood.forEach((v_price,indexPrice) => {
+                    if(indexPrice == indexImage && indexPrice == index){
+                        let imageUrl = v_image.src;
+                        let price = v_price.innerHTML; 
+                        let check = false;
+                        if(price > money){
+                             $(document).ready(function(){
+                                $('#modalNoticeStore').modal('show');
+                            });
+                        }
+                        else{
+                            oop_cat.getFood =   oop_cat.getFood.map(item => {
+                                var temp = Object.assign({},item);
+                                let str_imageURL = 'http://127.0.0.1:5501/Do_An_Cuoi_Ki_FE2/public/img/animal-food/cat/' + temp.image;
+                                if(imageUrl === str_imageURL){
+                                    check = true;
+                                    temp.amount = item.amount + 1;  
+                                }
+                                return temp;
+                            });
+                            if(check == false){
+                                let findIndexSlash = imageUrl.lastIndexOf('/');
+                                let subStrURL = imageUrl.substr(findIndexSlash + 1);//Lấy ra tên image 
+                                oop_cat.getFood = [...oop_cat.getFood,{name : "vv",image : subStrURL , amount : 2}];
+                            }
+                            let calcMoney = money - price;
+                            p_money.innerHTML = calcMoney;
+                            money = calcMoney;
+                            //Âm thanh mua đồ ăn
+                            loadFoodAfterBuy();
+                        }
+                    }
+                });
+            });
+        });
+    });
+}
+
+
+//Implement function check price when player buy food or toys
+function check_price_FoodOrToys(moneyCurrent,price){
+    if(moneyCurrent < price){
+          $(document).ready(function(){
+            $('#modalNoticeStore').modal('show');
+        });
+    }
+    else{
+        let moneyResult = moneyCurrent - price;
+        p_money.innerHTML = "Xu : " + moneyResult;
+        money = moneyResult;
+    }
+}
 //Toys
 function animalFeel_toys(){
-    loadToys();
-    setInterval(() => {
+    //loadToys();
+    decreaseToy(oop_cat);
+    let timeGetToys = setInterval(() => {
+        if(widthToys_subt > 100){
+            cssload_line_toys.style.background = "#f6b93b";
+        }
+        else{
+            cssload_line_toys.style.background = "dodgerblue";
+        }
         widthToys_subt += 5;
-        cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+"px)"
+        cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+"px)";
     }, 1000);
 }
-function loadToys(){
-    const createdToys = [
-        {image : "toys-mouse-blue.jpg"},
-        {image : "hello-kitty.jfif"}
-    ]
-    createdToys.map((item) => cInside_list_toys.insertAdjacentHTML('beforeend','<div class="toys"><img src="./public/img/animal-toys/'
-    +item.image+'"></div>') );
+//Implement function player choose toys 
+function decreaseToy(oop_cat){
+    let cAmount_toy = document.querySelectorAll('.amount-toy');
+    let cToys = document.querySelectorAll('.toys');
+    let imageToy = document.querySelectorAll('.imageToy');
+        cToys.forEach((element,index) => {
+            element.addEventListener('click', function(){
+                imageToy.forEach((v_toy,indexToy) => {
+                    v_toy.addEventListener('click',function(){
+                        if(indexToy  == index){
+                            let findIndexSlash = v_toy.src.lastIndexOf('/');
+                            let subStrURL = v_toy.src.substr(findIndexSlash + 1);//Lấy ra tên image 
+                            oop_cat.getToy.forEach(item => {
+                                if(item.image == subStrURL){
+                                    let amount = item.amount - 1;
+                                    if(amount == 0){
+                                        item.amount = amount;
+                                        oop_cat.getToy = oop_cat.getToy.filter((item,indexFilter) => item.amount !== 0);
+                                    }
+                                    item.amount = amount;  
+                                    money += 50;
+                                    p_money.innerHTML = "Xu : " + money;
+                                    widthToys_subt -= 50;
+                                    cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
+                                    //Âm thanh mua đồ chơi
+
+                                    loadToyAfterBuy();
+                                }          
+                            });  
+                        }
+                    }); 
+                });
+            });
+        });   
+}
+function removeListToy(){
+    let cToy = document.querySelectorAll('.toys');
+    cToy.forEach(element => {
+        element.remove();
+    });
+}
+function loadToyAfterBuy(){
+    removeListToy();
+    oop_cat.getToy.forEach(element => {
+          cInside_list_toys.insertAdjacentHTML('beforeend'
+          ,'<div id="toys" class="toys"><img class="imageToy" src="./public/img/animal-toys/'
+                +element.image+'"><p class="amount-toy">'+element.amount+'</p></div>');
+    });
+    decreaseToy(oop_cat);
+}
+//Toys
+function buyToys(){
+    let store_toy = document.querySelectorAll('.store-toys');
+    let imageToy = document.querySelectorAll('.store-image-toy');
+    let priceToy = document.querySelectorAll('.store-price-toy');
+    store_toy.forEach((element,index) => {
+        element.addEventListener('click', function(){
+            imageToy.forEach((v_image,indexImage) => {
+                priceToy.forEach((v_price,indexPrice) => {
+                    if(indexPrice == indexImage && indexPrice == index){
+                        let imageUrl = v_image.src;
+                        let price = v_price.innerHTML; 
+                        let check = false;
+                        if(price > money){
+                             $(document).ready(function(){
+                                $('#modalNoticeStore').modal('show');
+                            });
+                        }
+                        else{
+                            oop_cat.getToy =   oop_cat.getToy.map(item => {
+                                var temp = Object.assign({},item);
+                                let str_imageURL = 'http://127.0.0.1:5501/Do_An_Cuoi_Ki_FE2/public/img/animal-toys/' + temp.image;
+                                if(imageUrl === str_imageURL){
+                                    check = true;
+                                    temp.amount = item.amount + 1;  
+                                }
+                                return temp;
+                            });
+                            if(check == false){
+                                let findIndexSlash = imageUrl.lastIndexOf('/');
+                                let subStrURL = imageUrl.substr(findIndexSlash + 1);//Lấy ra tên image 
+                                oop_cat.getToy = [...oop_cat.getToy,{image : subStrURL , amount : 2}];
+                            }
+                            let calcMoney = money - price;
+                            p_money.innerHTML = calcMoney;
+                            money = calcMoney;
+                            //Âm thanh chọn đồ chơi
+                            loadToyAfterBuy();
+                        }
+                    }
+                });
+            });
+        });
+    });
+}
+
+function store_loadToys(){
+    if(imgStoreToys != null){
+        imgStoreToys.map((item) => cStore_list_toys.insertAdjacentHTML('beforeend'
+          ,'<div class="col-md-6 store-toys"><img class="store-image-toy" src="./public/img/animal-toys/'+item.image
+        +'"><p class="store-price-toy">'+item.price+'</p></div>'))
+    }
+}
+function store_loadFood(){
+    if(imgStoreFood != null){
+        imgStoreFood.map((item) => cStore_list_food.insertAdjacentHTML('beforeend'
+          ,'<div class="col-md-6 store-food"><img class="store-image-food" src="./public/img/animal-food/cat/'+item.image
+        +'"><p class="store-price-food">'+item.price+'</p></div>'))
+    }
 }
 
 
 
+//vuot ve thu cung
+function vuotVe(){
+    let image_animal_main = document.querySelector('#img-animal-main');
+    let cFeel = document.querySelector('.feel');
+    image_animal_main.addEventListener('click',function(){
+        cFeel.style.display = "block";
+        let feelNumber = 10;
+        widthToys_subt -= 50;
+        cFeel.innerHTML = "+" + feelNumber;
+        //Âm thanh vuốt ve 
+        cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+")";
+        let dem = 1;
+        let setTimeNoneFeel = setTimeout(() => {
+            cFeel.style.display = "none";
+            if(widthToys_subt < 0){
+                money += 200;
+                p_money.innerHTML = money;
+                //Âm thanh thưởng tiền
 
+            }
+        }, 7000);
+    });
+}
 
 
 

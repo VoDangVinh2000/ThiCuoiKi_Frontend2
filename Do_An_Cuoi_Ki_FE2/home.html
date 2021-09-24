@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <!-- Modal -->
+    <!-- Modal replay game -->
     <div class="modal fade" id="modalReplayGame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -43,6 +43,27 @@
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal notice store -->
+    <div class="modal fade" id="modalNoticeStore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Không đủ tiền mua! Hãy cho thú cưng ăn , tắm , vui và bạn sẽ được tặng xu. 
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                 </div>
             </div>
         </div>
@@ -140,6 +161,7 @@
                                             <div id="cssload-line-toys">
                                             </div>
                                         </div>
+                                        <span class="feel">+1</span>
                                     </div>
                                 </div>
                             </div>
@@ -147,6 +169,7 @@
                                 <div class="animal-main">
                                     <img src="" id="img-animal-main">
                                 </div>
+                               
                             </div>
                         </div>
                         <div class="col-md">
@@ -161,32 +184,61 @@
             </main>
 
             <!-- <div class="bg-pig"></div> -->
-            <!-- <footer>
+            <footer>
                 <div class="footer">
                     <div class="row">
-                        <div class="col-md">
+                        <!-- <div class="col-md">
                             <div class="setting">
                                 <p>Setting</p>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md">
-
+                            <div class="store" style="color: black;">
+                                <div class="row store-list">
+                                    <div class="col-md ">
+                                        <p>Food</p>
+                                        <div class="row store-list-food">
+                                            <!-- <div class="col-md-6 store-food">
+                                                <img src="./public/img/animal-food/cat/food1.png" alt="">
+                                                <p class="store-food-price">500</p>
+                                            </div>
+                                            <div class="col-md-6 store-food">
+                                                <img src="./public/img/animal-food/cat/friskies.png" alt="">
+                                                <p class="store-food-price">500</p>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md ">
+                                        <p>Toys</p>
+                                        <div class="row store-list-toys">
+                                            <!-- <div class="col-md-6 store-toys">
+                                                <img src="./public/img/animal-toys/ball.jpg" alt="500" >
+                                                <p class="store-toy-price">500</p>
+                                            </div>
+                                            <div class="col-md-6 store-toys">
+                                                <img src="./public/img/animal-toys/laze.png" alt="">
+                                                <p class="store-toy-price">500</p>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md">
                             <div class="exit-game">
                                 <p>Exit game</p>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="store" style="color: black;">
-                                <p>Store</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </footer> -->
-            
-            <footer>
+            </footer>
+            <audio id="loseGame">
+                <source src="./public/img/audio/loseGame.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="chooseFood">
+                <source src="./public/img/audio/start.mp3" type="audio/mpeg">
+            </audio>
+            <!-- <footer>
                 <div class="container-fluid mx-auto">
                     <div class="row d-flex justify-content-center row-2">
                         <div class="block-item">
@@ -203,7 +255,7 @@
                         </div>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
         </div>
     </div>
 

@@ -254,6 +254,9 @@ body{
 .select-toy{
     width: 100%;
     height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    padding: 17px;
 }
 .toys{
     display: flex;

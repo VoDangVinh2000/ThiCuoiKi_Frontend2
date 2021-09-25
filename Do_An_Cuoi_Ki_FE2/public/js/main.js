@@ -38,6 +38,7 @@ let cLevel_game = document.querySelector('.level-game');
 function upLevel(){
   
     if(exp < 100){
+        //Âm thanh tăng kinh nghiệm
         exp += 10;
         cCssload_line_exp.style.width = exp + "%";
         cLevel_game.innerHTML = "Level : " + level;
@@ -51,6 +52,14 @@ function adjustUpLevel(){
         cLevel_game.innerHTML = "Level : " + level;
         exp = 0;
         cCssload_line_exp.style.width = exp + "%";
+    
+        $(document).ready(function(){
+            $('#modalUpLevel').modal('show');
+            //Âm thanh tăng cấp
+            setTimeout(() => {
+                $('#modalUpLevel').modal('hide');
+            }, 3000);
+        })
     }
 }
 
@@ -539,7 +548,6 @@ function vuotVe(){
                 money += 200;
                 p_money.innerHTML = money;
                 //Âm thanh thưởng tiền
-
             }
         }, 7000);
     });

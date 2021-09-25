@@ -25,6 +25,28 @@
 </head>
 
 <body>
+    <!-- Modal up level -->
+    <div class="modal fade" id="modalUpLevel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="./public/img/imagesGame/up-level.gif" alt="">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   Chúc mừng bạn, bạn đã được thăng cấp.
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal replay game -->
     <div class="modal fade" id="modalReplayGame" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -38,7 +60,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    You are LOSER! A few moment later!
+                    Ôi không ! Chơi lại nào ^-^
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -103,11 +125,19 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md">
+                        <div class="col-md">
                             <div class="player-name">
-                                <p>Name</p>
+                                <p>Exp : </p>
+                                <div id="cssload-wrapper-exp">
+                                    <div id="cssload-border-exp">
+                                        <div id="cssload-whitespace-exp">
+                                            <div id="cssload-line-exp">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-md">
                             <div class="money-xu">
                                 <i class="fas fa-coins"></i>
@@ -232,8 +262,8 @@
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="exit-game">
-                                <p>Exit game</p>
+                            <div class="level">
+                                <p class="level-game">Level : 1</p>
                             </div>
                         </div>
                     </div>
@@ -253,6 +283,18 @@
             </audio>
             <audio id="buy">
                 <source src="./public/img/audio/muaThucAn.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="catCute">
+                <source src="./public/img/audio/meoDeThuong.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="noMoney">
+                <source src="./public/img/audio/khongDuTien.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="upLevel">
+                <source src="./public/img/audio/upLevel.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="startGame">
+                <source src="./public/img/audio/startGame.mp3" type="audio/mpeg">
             </audio>
             <!-- <footer>
                 <div class="container-fluid mx-auto">

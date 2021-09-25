@@ -10,6 +10,8 @@
 function welcome() {
     $(document).ready(function(){
         $('#modalStartGame').modal('show');
+        let startGame = document.getElementById("startGame");
+        startGame.play();
     });
 }
  welcome();
@@ -29,7 +31,43 @@ let drawingTutorial = () =>{
     // image.drawIamge(src,50,60);
     return this;
 }
-
+// Tang level
+let exp = 0;
+let cCssload_line_exp = document.querySelector('#cssload-line-exp');
+let level = 1;
+let cLevel_game = document.querySelector('.level-game');
+  cCssload_line_exp.style.width = 0 + "%";
+function upLevel(){
+    
+    if(exp < 100){
+        //Âm thanh tăng kinh nghiệm
+        exp += 10;
+        cCssload_line_exp.style.width = exp + "%";
+        cLevel_game.innerHTML = "Level : " + level;
+        adjustUpLevel();
+    }
+   
+}
+function adjustUpLevel(){
+    if(exp == 100){
+        level += 1;
+        cLevel_game.innerHTML = "Level : " + level;
+        exp = 0;
+        cCssload_line_exp.style.width = exp + "%";
+    
+        $(document).ready(function(){
+            $('#modalUpLevel').modal('show');
+            //Âm thanh tăng cấp
+            let upLevel = document.getElementById("upLevel");
+            upLevel.play();
+          
+            setTimeout(() => {
+                $('#modalUpLevel').modal('hide');
+                upLevel.pause();
+            }, 3000);
+        })
+    }
+}
 
 
 
@@ -192,7 +230,7 @@ let startGame = function(){
                         cLoaderLine.style.background = "green";
                     }
                     cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
-                    widthSubt += 2;
+                    widthSubt += 6;
                 }, 1000);
             }
         });
@@ -248,6 +286,9 @@ function decreaseFood(oop_cat){
                                     // p_money.innerHTML = "Xu : " + money;
                                     widthSubt -= 50;
                                     cLoaderLine.style.width = "calc(100% - "+widthSubt+")";
+                                    let hungryCat = document.getElementById("hungryCat");
+                                    hungryCat.pause();
+                                    upLevel();
                                     //Âm thanh chọn đồ ăn
                                     let chooseEat = document.getElementById("chooseEat");
                                     chooseEat.play();
@@ -365,15 +406,19 @@ function animalFeel_toys(){
     //loadToys();
     decreaseToy(oop_cat);
     let setTimeFeel;
+    let hungryCat = document.getElementById("hungryCat");
     let timeGetToys = setInterval(() => {
         if(widthToys_subt > 100){
             cssload_line_toys.style.background = "#f6b93b";
             //Âm thanh buồn
             img_animal_main.src = "./public/img/animal-feel/buon-meo.gif";
-            replayGameToys(widthToys_subt);    
+            
+            hungryCat.play();
+            // replayGameToys(widthToys_subt);    
         }
         else{
             //Âm thanh vui vẻ
+            hungryCat.pause();
             cssload_line_toys.style.background = "dodgerblue";   
              setTimeFeel =  setTimeout(() => {
                 img_animal_main.src = "./public/img/animal-feel/vui-meo-2.gif";   
@@ -402,11 +447,22 @@ function decreaseToy(oop_cat){
                                         item.amount = amount;
                                         oop_cat.getToy = oop_cat.getToy.filter((item,indexFilter) => item.amount !== 0);
                                     }
-                                    item.amount = amount;  
-                                    money += 50;
-                                    p_money.innerHTML = "Xu : " + money;
-                                    widthToys_subt -= 50;
-                                    cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
+                                    if(subStrURL == 'meme-toy1.jfif' || subStrURL == 'ball.jpg' || subStrURL == 'toys-mouse-blue.jpg'){
+                                        item.amount = amount;  
+                                        money += 50;
+                                        p_money.innerHTML = "Xu : " + money;
+                                        widthToys_subt -= 70;
+                                        cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
+                                        upLevel();
+                                    }
+                                    else{
+                                        item.amount = amount;  
+                                        money += 50;
+                                        p_money.innerHTML = "Xu : " + money;
+                                        widthToys_subt -= 50;
+                                        cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
+                                        upLevel();
+                                    }
                                     //Âm thanh chọn đồ chơi
                                     let chooseEat = document.getElementById("chooseEat");
                                     chooseEat.play();
@@ -450,6 +506,9 @@ function buyToys(){
                         if(price > money){
                              $(document).ready(function(){
                                 $('#modalNoticeStore').modal('show');
+                                //Âm thanh không đủ tiền
+                                let noMoney = document.getElementById("noMoney");
+                                noMoney.play();
                             });
                         }
                         else{
@@ -509,6 +568,11 @@ function vuotVe(){
         widthToys_subt -= 50;
         cFeel.innerHTML = "+" + feelNumber;
         //Âm thanh vuốt ve 
+        let catCute = document.getElementById("catCute");
+        catCute.play();
+        let setTime_vuotve = setTimeout(() => {
+            catCute.pause();
+        }, 2000);
         cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+")";
         let dem = 1;
         let setTimeNoneFeel = setTimeout(() => {
@@ -516,15 +580,9 @@ function vuotVe(){
             if(widthToys_subt < 0){
                 money += 200;
                 p_money.innerHTML = money;
+              
                 //Âm thanh thưởng tiền
-
             }
         }, 7000);
     });
 } 
-
-//Cho ăn : quy định thời gian 
-// function eatAnimal(){
-//     let div_time_to_get_food = document.querySelector('.time-to-get-food');
-//     let time
-// }

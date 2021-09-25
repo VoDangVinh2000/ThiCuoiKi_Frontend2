@@ -183,6 +183,8 @@ let startGame = function(){
                         //animals[0].getImage = "./public/img/animal-feel/Doi-an-meo.gif";
                         img_animal_main.src = "./public/img/animal-feel/Doi-an-meo.gif";
                         //Âm thanh đòi ăn
+                        let hungryCat = document.getElementById("hungryCat");
+                        hungryCat.play();
                         replayGameFood(widthSubt);
                     }
                     else{
@@ -247,6 +249,11 @@ function decreaseFood(oop_cat){
                                     widthSubt -= 50;
                                     cLoaderLine.style.width = "calc(100% - "+widthSubt+")";
                                     //Âm thanh chọn đồ ăn
+                                    let chooseEat = document.getElementById("chooseEat");
+                                    chooseEat.play();
+                                    // document.getElementById('chooseEat').onclick = function(){
+                                    //      chooseEat.play();
+                                    // };
                                     loadFoodAfterBuy();
                                 }          
                             });  
@@ -328,6 +335,8 @@ function buyFood(){
                             p_money.innerHTML = calcMoney;
                             money = calcMoney;
                             //Âm thanh mua đồ ăn
+                            let buy = document.getElementById("buy");
+                            buy.play();
                             loadFoodAfterBuy();
                         }
                     }
@@ -398,8 +407,9 @@ function decreaseToy(oop_cat){
                                     p_money.innerHTML = "Xu : " + money;
                                     widthToys_subt -= 50;
                                     cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
-                                    //Âm thanh mua đồ chơi
-
+                                    //Âm thanh chọn đồ chơi
+                                    let chooseEat = document.getElementById("chooseEat");
+                                    chooseEat.play();
                                     loadToyAfterBuy();
                                 }          
                             });  
@@ -460,7 +470,9 @@ function buyToys(){
                             let calcMoney = money - price;
                             p_money.innerHTML = calcMoney;
                             money = calcMoney;
-                            //Âm thanh chọn đồ chơi
+                            //Âm thanh mua đồ chơi
+                            let buy = document.getElementById("buy");
+                            buy.play();
                             loadToyAfterBuy();
                         }
                     }

@@ -29,7 +29,30 @@ let drawingTutorial = () =>{
     // image.drawIamge(src,50,60);
     return this;
 }
-
+// Tang level
+let exp = 0;
+let cCssload_line_exp = document.querySelector('#cssload-line-exp');
+let level = 1;
+let cLevel_game = document.querySelector('.level-game');
+  cCssload_line_exp.style.width = 0 + "%";
+function upLevel(){
+  
+    if(exp < 100){
+        exp += 10;
+        cCssload_line_exp.style.width = exp + "%";
+        cLevel_game.innerHTML = "Level : " + level;
+        adjustUpLevel();
+    }
+   
+}
+function adjustUpLevel(){
+    if(exp == 100){
+        level += 1;
+        cLevel_game.innerHTML = "Level : " + level;
+        exp = 0;
+        cCssload_line_exp.style.width = exp + "%";
+    }
+}
 
 
 
@@ -183,7 +206,7 @@ let startGame = function(){
                         //animals[0].getImage = "./public/img/animal-feel/Doi-an-meo.gif";
                         img_animal_main.src = "./public/img/animal-feel/Doi-an-meo.gif";
                         //Âm thanh đòi ăn
-                        replayGameFood(widthSubt);
+                        // replayGameFood(widthSubt);
                     }
                     else{
                         //Âm thanh đã ăn
@@ -246,6 +269,7 @@ function decreaseFood(oop_cat){
                                     // p_money.innerHTML = "Xu : " + money;
                                     widthSubt -= 50;
                                     cLoaderLine.style.width = "calc(100% - "+widthSubt+")";
+                                    upLevel();
                                     //Âm thanh chọn đồ ăn
                                     loadFoodAfterBuy();
                                 }          
@@ -361,7 +385,7 @@ function animalFeel_toys(){
             cssload_line_toys.style.background = "#f6b93b";
             //Âm thanh buồn
             img_animal_main.src = "./public/img/animal-feel/buon-meo.gif";
-            replayGameToys(widthToys_subt);    
+            // replayGameToys(widthToys_subt);    
         }
         else{
             //Âm thanh vui vẻ
@@ -393,13 +417,23 @@ function decreaseToy(oop_cat){
                                         item.amount = amount;
                                         oop_cat.getToy = oop_cat.getToy.filter((item,indexFilter) => item.amount !== 0);
                                     }
-                                    item.amount = amount;  
-                                    money += 50;
-                                    p_money.innerHTML = "Xu : " + money;
-                                    widthToys_subt -= 50;
-                                    cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
+                                    if(subStrURL == 'meme-toy1.jfif' || subStrURL == 'ball.jpg' || subStrURL == 'toys-mouse-blue.jpg'){
+                                        item.amount = amount;  
+                                        money += 50;
+                                        p_money.innerHTML = "Xu : " + money;
+                                        widthToys_subt -= 70;
+                                        cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
+                                        upLevel();
+                                    }
+                                    else{
+                                        item.amount = amount;  
+                                        money += 50;
+                                        p_money.innerHTML = "Xu : " + money;
+                                        widthToys_subt -= 50;
+                                        cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
+                                        upLevel();
+                                    }
                                     //Âm thanh mua đồ chơi
-
                                     loadToyAfterBuy();
                                 }          
                             });  
@@ -510,9 +544,3 @@ function vuotVe(){
         }, 7000);
     });
 } 
-
-//Cho ăn : quy định thời gian 
-// function eatAnimal(){
-//     let div_time_to_get_food = document.querySelector('.time-to-get-food');
-//     let time
-// }

@@ -173,7 +173,46 @@ body{
 
 .player-name{
     color: #fff;
+    display: flex;
+ 
 }
+#cssload-wrapper-exp {
+	width: 195px;
+	height: 19px;
+    margin-top: 3px;
+    margin-left: 3px;
+    padding: 2px 0;
+}
+#cssload-border-exp {
+	border: 2px solid #9b59b6;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	padding: 2px 3px;
+}
+
+#cssload-whitespace-exp {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+#cssload-line-exp {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(-45deg,#f5f6fa,#e74c3c);
+	/* animation: cssload-slide 5.75s steps(40) infinite;
+		-o-animation: cssload-slide 5.75s steps(40) infinite;
+		-ms-animation: cssload-slide 5.75s steps(40) infinite;
+		-webkit-animation: cssload-slide 5.75s steps(40) infinite;
+		-moz-animation: cssload-slide 5.75s steps(40) infinite; */
+}
+
+/*css loader-line toys*/
 .money-xu{
     color: #fff;
     display: flex;
@@ -472,7 +511,8 @@ footer p {
 /*end css footer*/
 
 
-
+/*css player-name*/
+/*end css player-name*/
 
 
 

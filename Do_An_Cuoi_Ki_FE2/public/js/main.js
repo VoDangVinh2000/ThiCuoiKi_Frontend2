@@ -10,6 +10,8 @@
 function welcome() {
     $(document).ready(function(){
         $('#modalStartGame').modal('show');
+        let startGame = document.getElementById("startGame");
+        startGame.play();
     });
 }
  welcome();
@@ -36,7 +38,7 @@ let level = 1;
 let cLevel_game = document.querySelector('.level-game');
   cCssload_line_exp.style.width = 0 + "%";
 function upLevel(){
-  
+    
     if(exp < 100){
         //Âm thanh tăng kinh nghiệm
         exp += 10;
@@ -56,8 +58,12 @@ function adjustUpLevel(){
         $(document).ready(function(){
             $('#modalUpLevel').modal('show');
             //Âm thanh tăng cấp
+            let upLevel = document.getElementById("upLevel");
+            upLevel.play();
+          
             setTimeout(() => {
                 $('#modalUpLevel').modal('hide');
+                upLevel.pause();
             }, 3000);
         })
     }
@@ -215,14 +221,16 @@ let startGame = function(){
                         //animals[0].getImage = "./public/img/animal-feel/Doi-an-meo.gif";
                         img_animal_main.src = "./public/img/animal-feel/Doi-an-meo.gif";
                         //Âm thanh đòi ăn
-                        // replayGameFood(widthSubt);
+                        let hungryCat = document.getElementById("hungryCat");
+                        hungryCat.play();
+                        replayGameFood(widthSubt);
                     }
                     else{
                         //Âm thanh đã ăn
                         cLoaderLine.style.background = "green";
                     }
                     cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
-                    widthSubt += 2;
+                    widthSubt += 6;
                 }, 1000);
             }
         });
@@ -278,8 +286,15 @@ function decreaseFood(oop_cat){
                                     // p_money.innerHTML = "Xu : " + money;
                                     widthSubt -= 50;
                                     cLoaderLine.style.width = "calc(100% - "+widthSubt+")";
+                                    let hungryCat = document.getElementById("hungryCat");
+                                    hungryCat.pause();
                                     upLevel();
                                     //Âm thanh chọn đồ ăn
+                                    let chooseEat = document.getElementById("chooseEat");
+                                    chooseEat.play();
+                                    // document.getElementById('chooseEat').onclick = function(){
+                                    //      chooseEat.play();
+                                    // };
                                     loadFoodAfterBuy();
                                 }          
                             });  
@@ -361,6 +376,8 @@ function buyFood(){
                             p_money.innerHTML = calcMoney;
                             money = calcMoney;
                             //Âm thanh mua đồ ăn
+                            let buy = document.getElementById("buy");
+                            buy.play();
                             loadFoodAfterBuy();
                         }
                     }
@@ -389,15 +406,19 @@ function animalFeel_toys(){
     //loadToys();
     decreaseToy(oop_cat);
     let setTimeFeel;
+    let hungryCat = document.getElementById("hungryCat");
     let timeGetToys = setInterval(() => {
         if(widthToys_subt > 100){
             cssload_line_toys.style.background = "#f6b93b";
             //Âm thanh buồn
             img_animal_main.src = "./public/img/animal-feel/buon-meo.gif";
+            
+            hungryCat.play();
             // replayGameToys(widthToys_subt);    
         }
         else{
             //Âm thanh vui vẻ
+            hungryCat.pause();
             cssload_line_toys.style.background = "dodgerblue";   
              setTimeFeel =  setTimeout(() => {
                 img_animal_main.src = "./public/img/animal-feel/vui-meo-2.gif";   
@@ -442,7 +463,9 @@ function decreaseToy(oop_cat){
                                         cssload_line_toys.style.width = "calc(100% - "+widthSubt+")";
                                         upLevel();
                                     }
-                                    //Âm thanh mua đồ chơi
+                                    //Âm thanh chọn đồ chơi
+                                    let chooseEat = document.getElementById("chooseEat");
+                                    chooseEat.play();
                                     loadToyAfterBuy();
                                 }          
                             });  
@@ -483,6 +506,9 @@ function buyToys(){
                         if(price > money){
                              $(document).ready(function(){
                                 $('#modalNoticeStore').modal('show');
+                                //Âm thanh không đủ tiền
+                                let noMoney = document.getElementById("noMoney");
+                                noMoney.play();
                             });
                         }
                         else{
@@ -503,7 +529,9 @@ function buyToys(){
                             let calcMoney = money - price;
                             p_money.innerHTML = calcMoney;
                             money = calcMoney;
-                            //Âm thanh chọn đồ chơi
+                            //Âm thanh mua đồ chơi
+                            let buy = document.getElementById("buy");
+                            buy.play();
                             loadToyAfterBuy();
                         }
                     }
@@ -540,6 +568,11 @@ function vuotVe(){
         widthToys_subt -= 50;
         cFeel.innerHTML = "+" + feelNumber;
         //Âm thanh vuốt ve 
+        let catCute = document.getElementById("catCute");
+        catCute.play();
+        let setTime_vuotve = setTimeout(() => {
+            catCute.pause();
+        }, 2000);
         cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+")";
         let dem = 1;
         let setTimeNoneFeel = setTimeout(() => {
@@ -547,6 +580,7 @@ function vuotVe(){
             if(widthToys_subt < 0){
                 money += 200;
                 p_money.innerHTML = money;
+              
                 //Âm thanh thưởng tiền
             }
         }, 7000);

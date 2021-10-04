@@ -207,31 +207,36 @@ let startGame = function(){
                 createOop_Cat(animals,img_animal_main);
                 element.style.display = "none";
                 startOopCat(animals[0]);
-                animalFeel_toys();
+               
                 store_loadToys();
                 store_loadFood();
                 decreaseFood(oop_cat);
                 buyFood();
                 buyToys();
                 vuotVe();
+                animalFeel_toys();
                 let checkDied = false;
+                let hungryCat = document.getElementById("hungryCat");
                 let timeGetFood = setInterval(() => {  
                     if(widthSubt > 100 ){
                         cLoaderLine.style.background = "red";
                         //animals[0].getImage = "./public/img/animal-feel/Doi-an-meo.gif";
                         img_animal_main.src = "./public/img/animal-feel/Doi-an-meo.gif";
                         //Âm thanh đòi ăn
-                        let hungryCat = document.getElementById("hungryCat");
+                        
                         hungryCat.play();
                         replayGameFood(widthSubt);
                     }
                     else{
                         //Âm thanh đã ăn
                         cLoaderLine.style.background = "green";
+                        hungryCat.pause();
+                        // img_animal_main.src = "./public/img/animal-feel/vui-meo.gif";   
                     }
                     cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
                     widthSubt += 6;
                 }, 1000);
+               
             }
         });
     });
@@ -282,8 +287,8 @@ function decreaseFood(oop_cat){
                                         oop_cat.getFood = oop_cat.getFood.filter((item,indexFilter) => item.amount !== 0);
                                     }
                                     item.amount = amount;  
-                                    // money += 50;
-                                    // p_money.innerHTML = "Xu : " + money;
+                                    money += 25;
+                                    p_money.innerHTML = "Xu : " + money;
                                     widthSubt -= 50;
                                     cLoaderLine.style.width = "calc(100% - "+widthSubt+")";
                                     let hungryCat = document.getElementById("hungryCat");
@@ -411,18 +416,18 @@ function animalFeel_toys(){
         if(widthToys_subt > 100){
             cssload_line_toys.style.background = "#f6b93b";
             //Âm thanh buồn
-            img_animal_main.src = "./public/img/animal-feel/buon-meo.gif";
-            
+            setTimeout(() => {
+                img_animal_main.src = "./public/img/animal-feel/buon-meo.gif";
+            }, 2000);
             hungryCat.play();
-            // replayGameToys(widthToys_subt);    
+            replayGameToys(widthToys_subt);    
         }
         else{
             //Âm thanh vui vẻ
             hungryCat.pause();
-            cssload_line_toys.style.background = "dodgerblue";   
-             setTimeFeel =  setTimeout(() => {
-                img_animal_main.src = "./public/img/animal-feel/vui-meo-2.gif";   
-            }, 3000);
+            cssload_line_toys.style.background = "dodgerblue"; 
+            
+            img_animal_main.src = "./public/img/animal-feel/vui-meo-2.gif";     
         }
         widthToys_subt += 5;
         cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+"px)";

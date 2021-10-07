@@ -1,10 +1,10 @@
 //Sự kiện trước khi load trang.
-window.onbeforeunload = function () {
-  return (
-    "Any string value here forces a dialog box to \n" +
-    "appear before closing the window."
-  );
-};
+// window.onbeforeunload = function () {
+//   return (
+//     "Any string value here forces a dialog box to \n" +
+//     "appear before closing the window."
+//   );
+// };
 
 //Trạng thái chào mừng
 function welcome() {
@@ -207,36 +207,31 @@ let startGame = function(){
                 createOop_Cat(animals,img_animal_main);
                 element.style.display = "none";
                 startOopCat(animals[0]);
-               
+                animalFeel_toys();
                 store_loadToys();
                 store_loadFood();
                 decreaseFood(oop_cat);
                 buyFood();
                 buyToys();
                 vuotVe();
-                animalFeel_toys();
                 let checkDied = false;
-                let hungryCat = document.getElementById("hungryCat");
                 let timeGetFood = setInterval(() => {  
                     if(widthSubt > 100 ){
                         cLoaderLine.style.background = "red";
                         //animals[0].getImage = "./public/img/animal-feel/Doi-an-meo.gif";
                         img_animal_main.src = "./public/img/animal-feel/Doi-an-meo.gif";
                         //Âm thanh đòi ăn
-                        
+                        let hungryCat = document.getElementById("hungryCat");
                         hungryCat.play();
                         replayGameFood(widthSubt);
                     }
                     else{
                         //Âm thanh đã ăn
                         cLoaderLine.style.background = "green";
-                        hungryCat.pause();
-                        // img_animal_main.src = "./public/img/animal-feel/vui-meo.gif";   
                     }
                     cLoaderLine.style.width = "calc(100% - "+widthSubt+"px)"; 
                     widthSubt += 6;
                 }, 1000);
-               
             }
         });
     });
@@ -287,8 +282,8 @@ function decreaseFood(oop_cat){
                                         oop_cat.getFood = oop_cat.getFood.filter((item,indexFilter) => item.amount !== 0);
                                     }
                                     item.amount = amount;  
-                                    money += 25;
-                                    p_money.innerHTML = "Xu : " + money;
+                                    // money += 50;
+                                    // p_money.innerHTML = "Xu : " + money;
                                     widthSubt -= 50;
                                     cLoaderLine.style.width = "calc(100% - "+widthSubt+")";
                                     let hungryCat = document.getElementById("hungryCat");
@@ -355,6 +350,8 @@ function buyFood(){
                 priceFood.forEach((v_price,indexPrice) => {
                     if(indexPrice == indexImage && indexPrice == index){
                         let imageUrl = v_image.src;
+                        let findIndexSlash = imageUrl.lastIndexOf('/');
+                        let subStrURL = imageUrl.substr(findIndexSlash + 1);//Lấy ra tên image 
                         let price = v_price.innerHTML; 
                         let check = false;
                         if(price > money){
@@ -365,10 +362,10 @@ function buyFood(){
                         else{
                             oop_cat.getFood =   oop_cat.getFood.map(item => {
                                 var temp = Object.assign({},item);
-                                let str_imageURL = 'http://127.0.0.1:5501/Do_An_Cuoi_Ki_FE2/public/img/animal-food/cat/' + temp.image;
-                                if(imageUrl === str_imageURL){
-                                    check = true;
+                                if(temp.image == subStrURL){
+                                     check = true;
                                     temp.amount = item.amount + 1;  
+                                     console.log(imageUrl);
                                 }
                                 return temp;
                             });
@@ -376,6 +373,7 @@ function buyFood(){
                                 let findIndexSlash = imageUrl.lastIndexOf('/');
                                 let subStrURL = imageUrl.substr(findIndexSlash + 1);//Lấy ra tên image 
                                 oop_cat.getFood = [...oop_cat.getFood,{name : "vv",image : subStrURL , amount : 2}];
+                                console.log('them anh');
                             }
                             let calcMoney = money - price;
                             p_money.innerHTML = calcMoney;
@@ -416,18 +414,18 @@ function animalFeel_toys(){
         if(widthToys_subt > 100){
             cssload_line_toys.style.background = "#f6b93b";
             //Âm thanh buồn
-            setTimeout(() => {
-                img_animal_main.src = "./public/img/animal-feel/buon-meo.gif";
-            }, 2000);
+            img_animal_main.src = "./public/img/animal-feel/buon-meo.gif";
+            
             hungryCat.play();
-            replayGameToys(widthToys_subt);    
+            // replayGameToys(widthToys_subt);    
         }
         else{
             //Âm thanh vui vẻ
             hungryCat.pause();
-            cssload_line_toys.style.background = "dodgerblue"; 
-            
-            img_animal_main.src = "./public/img/animal-feel/vui-meo-2.gif";     
+            cssload_line_toys.style.background = "dodgerblue";   
+             setTimeFeel =  setTimeout(() => {
+                img_animal_main.src = "./public/img/animal-feel/vui-meo-2.gif";   
+            }, 3000);
         }
         widthToys_subt += 5;
         cssload_line_toys.style.width = "calc(100% - "+widthToys_subt+"px)";
@@ -500,12 +498,15 @@ function buyToys(){
     let store_toy = document.querySelectorAll('.store-toys');
     let imageToy = document.querySelectorAll('.store-image-toy');
     let priceToy = document.querySelectorAll('.store-price-toy');
+    console.log('mua do choi');
     store_toy.forEach((element,index) => {
         element.addEventListener('click', function(){
             imageToy.forEach((v_image,indexImage) => {
                 priceToy.forEach((v_price,indexPrice) => {
                     if(indexPrice == indexImage && indexPrice == index){
                         let imageUrl = v_image.src;
+                        let findIndexSlash = imageUrl.lastIndexOf('/');
+                        let subStrURL = imageUrl.substr(findIndexSlash + 1);//Lấy ra tên image 
                         let price = v_price.innerHTML; 
                         let check = false;
                         if(price > money){
@@ -519,8 +520,7 @@ function buyToys(){
                         else{
                             oop_cat.getToy =   oop_cat.getToy.map(item => {
                                 var temp = Object.assign({},item);
-                                let str_imageURL = 'http://127.0.0.1:5501/Do_An_Cuoi_Ki_FE2/public/img/animal-toys/' + temp.image;
-                                if(imageUrl === str_imageURL){
+                                if(temp.image == subStrURL){
                                     check = true;
                                     temp.amount = item.amount + 1;  
                                 }
